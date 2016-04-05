@@ -1,29 +1,56 @@
 <head>
   <title>meteormovies</title>
-  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="css/bootstrap.main.css" rel="stylesheet"type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <h1>Welcome to Meteor!</h1>
-  	<p="pics">This website is intended for for thoes who have seen the movies. if you don't want any spoilers this is not the website for you!</p>
-  	<div class=".container-fluid">
-  		<div class="row">
-  			<div class="col-md-4">
-  				<img src="img/chickenlittle.jpeg">
-  			</div>
-
-  			<div class="col-md-4">
-  				<img src="img/cloudy.jpeg">
-  			</div>
-  		</div>
-  		
-  	</div>
-  {{> hello}}
+<div class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">Meteor movies</a>
+      </div>
+      <div class="pull-right">
+      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+      	<p>{{>loginButtons align="right"}}</p>
+      </div>
+    </div>
+  </div>
+ <h3>This website is intended for for thoes who have seen the movies.<br> If you don't want any spoilers this is not the website for you!</h3>
+{{> Post}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="Post">
+<hr>
+
+<div class="row">
+	<div class="center-block">
+	    <div class="col-xs-6"> 
+		    <div class="container">
+			  	<form class="col-xs-6 new-post">
+			  	 <img src="/images/cloudy.jpeg" class="img-responsive" alt="Cloudy with a chance of meatballs"/>
+			  	  <hr>
+			        <div class="form-group">
+			         <input type="text" name="text" class="form-control" placeholder="Say what you want?">
+			        </div>
+			      <hr>
+			    </form>
+			</div>  
+	    </div>
+	</div>  
+
+	<div class="center-block">
+	    <div class="col-xs-6"> 
+		    <div class="container">
+			  	<form class="col-xs-6 new-post">
+			  	 <img src="/images/chickenlittle.jpeg" class="img-responsive" alt="Chicken Little"/>
+			  	  <hr>
+			        <div class="form-group">
+			         <input type="text" name="text" class="form-control" placeholder="Say what you want?">
+			        </div>
+			      <hr>
+			    </form>
+			</div>  
+	    </div>
+    </div>
+</div>
 </template>
+

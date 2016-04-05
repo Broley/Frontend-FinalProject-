@@ -1,1 +1,18 @@
-/* CSS declarations go here */
+.container{
+	background-color: ;
+
+	}/* CSS declarations go here */
+h3{
+	text-align: center;
+}
+.center-block img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container{
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
