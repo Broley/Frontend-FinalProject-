@@ -1,56 +1,77 @@
 <head>
-  <title>meteormovies</title>
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <title>Meteor Movies</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
+
 <body>
-<div class="navbar navbar-inverse">
-    <div class="container">
+  <div class="navbar navbar-inverse">
+    <div class="container-fluid">
       <div class="navbar-header">
-        <a href="#" class="navbar-brand">Meteor movies</a>
+        <a href="#" class="navbar-brand">Meteor Moives</a>
       </div>
+
       <div class="pull-right">
-      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
       	<p>{{>loginButtons align="right"}}</p>
       </div>
     </div>
   </div>
- <h3>This website is intended for for thoes who have seen the movies.<br> If you don't want any spoilers this is not the website for you!</h3>
-{{> Post}}
-</body>
 
-<template name="Post">
-<hr>
+<h3>This website is intended for for thoes who have seen the movies.<br> If you don't want any spoilers this is not the website for you!</h3>
 
-<div class="row">
-	<div class="center-block">
-	    <div class="col-xs-6"> 
-		    <div class="container">
-			  	<form class="col-xs-6 new-post">
-			  	 <img src="/images/cloudy.jpeg" class="img-responsive" alt="Cloudy with a chance of meatballs"/>
-			  	  <hr>
-			        <div class="form-group">
-			         <input type="text" name="text" class="form-control" placeholder="Say what you want?">
-			        </div>
-			      <hr>
-			    </form>
-			</div>  
-	    </div>
-	</div>  
 
-	<div class="center-block">
-	    <div class="col-xs-6"> 
-		    <div class="container">
-			  	<form class="col-xs-6 new-post">
-			  	 <img src="/images/chickenlittle.jpeg" class="img-responsive" alt="Chicken Little"/>
-			  	  <hr>
-			        <div class="form-group">
-			         <input type="text" name="text" class="form-control" placeholder="Say what you want?">
-			        </div>
-			      <hr>
-			    </form>
-			</div>  
-	    </div>
-    </div>
+
+
+  {{#if currentUser}}
+  <div class="container">
+  <div class="row">
+  <div class="container-block">
+    <form class="col-xs-6 new-post">
+        <div class="form-group">
+            <img src="/images/cloudy.jpeg" class="img-responsive" alt="Cloudy with a chance of meatballs"/>
+              <input type="text" name="text" class="form-control"
+            placeholder="Say what you want?">
+        </div>
+      <hr>
+    </form>
+  </div>
+  </div>
+
+   <!--<div class="container">
+  <div class="row">
+ 
+    <form class="col-xs-6 new-post">
+        <div class="form-group">
+            <img src="/images/chickenlittle.jpeg" class="img-responsive" alt="Cloudy with a chance of meatballs"/>
+              <input type="text" name="text" class="form-control"
+            placeholder="Say what you want?">
+        </div>
+      <hr>
+    </form>
+   
+  </div>-->
+  
 </div>
-</template>
 
+
+{{/if}}
+
+  <div class="container posts">
+ {{#each posts}}
+  {{> post}}
+  {{/ each}}
+  </div>
+</body>
+<template name="post">
+  <div class="row post">
+    <div class="col-xs-6">
+   {{#if isMyPost }}
+    <button  type="button" class="delete-post close">&times;</button>
+   {{/if}}
+      <p class="text lead">{{ text }}</p>
+      <p class="small">Posted: {{ time }} by {{ username }}</p>
+      <hr>
+    </div>
+  </div>
+</template>
