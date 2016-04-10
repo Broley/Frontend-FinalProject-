@@ -1,20 +1,35 @@
 
-#login-buttons { margin-top: 18px; }/
-.container{
-	background-color: ;
+/*#login-buttons { margin-top: 18px; }/
 
 	}/* CSS declarations go here */
-h3{
-	text-align: center;
-}
-.center-block img{
+
+.center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
-.container{
-	display: block;
-  margin-left: auto;
-  margin-right: auto;
+h3 {
+	text-align: center;
+	padding: 10px 0px 20px 0px;
 }
+#cloudy {
+	padding: 0px 0px 20px 250px;
+}
+#chicken {
+	padding: 0px 0px 20px 180px;
+}
+p{
+	text-align: center;
+}
+.editbox {
+	margin-bottom: 50px;
+	text-align: center;
+	color: blue;
+	background-color: rgba(20, 98, 188, 0.3);
+}
+/*.topboxtwo{
+	position: fixed;
+}
+.postbox{
+	position: relative;
+}*/

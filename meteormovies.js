@@ -14,6 +14,11 @@ Meteor.methods({
   deletePost: function(postId) {
     //todo check  the user
     Posts.remove(postId);
+  },
+  editText: function(post){
+    Posts.update(this.text, {
+      $set: this._id, text
+    });
   }
 });
 
@@ -21,12 +26,13 @@ if (Meteor.isClient) {
    Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
+   Template.body.rendered = function() {
+  $(".editbox").hide();
+}
 
   Template.body.helpers({
     posts: function () {
-      return Posts.find({}, {
-        sort: { createdAt: -1 }
-      });
+      return Posts.find({}, { sort: { createdAt: -1 }, limit: 15});
     }
   });
 
@@ -60,12 +66,15 @@ if (Meteor.isClient) {
       } else {
            Meteor.call('createPost', event.target.text.value);
       event.target.text.value = " ";
-       /* Posts.insert({
-          text: event.target.text.value,
-          createdAt: new Date(),
-          userId: Meteor.user()._id
-        });*/
-      }s
+      }
+    },
+//testing post editing
+    'submit #post-edit': function(event) {
+      event.preventDefault();
+    
+        Meteor.call('createPost',  event.target.text.value);
+        event.target.text.value='';
+        $(".editbox").hide();
     }
   });
 
@@ -73,12 +82,46 @@ if (Meteor.isClient) {
     'click .delete-post': function(event) {
       //only delete if user this.userId matches Meteor.user()._id
       Meteor.call('deletePost', this._id); 
+    },
+    'click .edit-post': function(event) {
+      /*console.log('hello');
+      console.log(this._id);
+      console.log(this.text);*/
+     
+      $("#editPostText").val(this.text);
+       $(".editbox").show();
+      Meteor.call('deletePost', this._id);
+
+
     }
   });
+
 }
 
 if (Meteor.isServer) {
+
+  Meteor.methods({
+addMessage: function(messageData){
+  //Check if the user is logged in
+  if(!Meteor.userId()){
+    throw new Meteor.Error("not-authorized");
+  }
+  //Message needs it have content
+  if(!messageData.content){
+    throw new Meteor.Error('invalid')
+  }
+
+}
+  });
+
+
+
+
   Meteor.startup(function () {
     // code to run on server at startup
+
   });
 }
+
+
+
